@@ -4,3 +4,5 @@ __pycache__/
 .pytest_cache/
 submissions.json
 test-report.json
+pytest-report.json
+formatted-report.json
