@@ -64,7 +64,7 @@ def index():
             message = "Submission URL is required."
             message_type = "error"
 
-        elif False:
+        elif elif not is_valid_url(submission_url):
             message = "Invalid submission URL."
             message_type = "error"
 
