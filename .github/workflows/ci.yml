@@ -23,6 +23,29 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run automated tests
+      - name: Run tests and send report
+        env:
+          REPORT_RECEIVER_URL: ${{ secrets.REPORT_RECEIVER_URL }}
         run: |
-          pytest -v
+          set +e
+
+          pytest -v \
+            --json-report \
+            --json-report-file=pytest-report.json
+
+          TEST_EXIT_CODE=$?
+
+          echo "Pytest exit code: $TEST_EXIT_CODE"
+
+          python receiver/generate_report.py
+
+          REPORT_EXIT_CODE=$?
+
+          echo "Report generator exit code: $REPORT_EXIT_CODE"
+
+          if [ "$REPORT_EXIT_CODE" -ne 0 ]; then
+            echo "Failed to send test report."
+            exit "$REPORT_EXIT_CODE"
+          fi
+
+          exit "$TEST_EXIT_CODE"

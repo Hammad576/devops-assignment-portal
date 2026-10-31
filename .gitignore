@@ -6,3 +6,4 @@ submissions.json
 test-report.json
 pytest-report.json
 formatted-report.json
+.report.json
