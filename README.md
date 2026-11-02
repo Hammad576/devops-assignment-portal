@@ -18,6 +18,7 @@ and automatic delivery of CI test reports to a local machine using Cloudflare Tu
 
 ## Project Structure
 
+```text
 devops-assignment-portal/
 ├── app/
 │   ├── app.py
@@ -37,7 +38,7 @@ devops-assignment-portal/
 ├── requirements.txt
 ├── .gitignore
 └── README.md
-
+```
 ## Requirements
 
 - Python 3.12
