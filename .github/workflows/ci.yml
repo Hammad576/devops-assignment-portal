@@ -56,6 +56,14 @@ jobs:
 
           exit "$TEST_EXIT_CODE"
 
+      - name: Send test report by email
+        if: always()
+        continue-on-error: true
+        env:
+          MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+        run: python receiver/send_email.py
   deploy:
     needs: test
     runs-on: ubuntu-latest
