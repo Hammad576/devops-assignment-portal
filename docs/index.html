@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DevOps Assignment Submission Portal</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            margin: 0;
+            padding: 30px 15px;
+            color: #1e293b;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            text-align: center;
+            color: #1d4ed8;
+        }
+
+        p {
+            text-align: center;
+            color: #64748b;
+        }
+
+        label {
+            display: block;
+            margin-top: 18px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 7px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 13px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .notice {
+            margin-top: 20px;
+            padding: 12px;
+            background: #eff6ff;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Assignment Submission Portal</h1>
+
+        <p>DevOps for Cloud Computing Lab</p>
+
+        <form>
+
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Enter your name">
+
+            <label for="registration">Registration Number</label>
+            <input type="text" id="registration"
+                   placeholder="Enter registration number">
+
+            <label for="assignment">Assignment Title</label>
+            <input type="text" id="assignment"
+                   placeholder="Enter assignment title">
+
+            <label for="url">Submission URL</label>
+            <input type="url" id="url"
+                   placeholder="Enter submission URL">
+
+            <button type="button" disabled>
+                Static Preview Only
+            </button>
+
+        </form>
+
+        <div class="notice">
+            This is the static GitHub Pages preview.
+            For actual assignment submission and validation,
+            use the Flask application.
+        </div>
+
+        <footer>
+            <a href="https://github.com/Hammad576/devops-assignment-portal">
+                View GitHub Repository
+            </a>
+        </footer>
+
+    </div>
+
+</body>
+</html>
