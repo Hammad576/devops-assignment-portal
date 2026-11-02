@@ -18,24 +18,25 @@ and automatic delivery of CI test reports to a local machine using Cloudflare Tu
 
 ## Project Structure
 
-```text
 devops-assignment-portal/
 ├── app/
 │   ├── app.py
 │   └── templates/
 │       └── index.html
+├── docs/
+│   └── index.html
 ├── tests/
 │   └── test_app.py
 ├── receiver/
 │   ├── receiver.py
-│   └── generate_report.py
+│   ├── generate_report.py
+│   └── send_email.py
 ├── .github/
 │   └── workflows/
 │       └── ci.yml
 ├── requirements.txt
 ├── .gitignore
 └── README.md
-```
 
 ## Requirements
 
@@ -176,3 +177,49 @@ This demonstrates that failed CI executions also generate and deliver their repo
 ## GitHub Repository
 
 https://github.com/Hammad576/devops-assignment-portal
+
+## GitHub Pages Deployment
+
+The project includes a static preview website hosted using GitHub Pages.
+
+- Website source: `docs/index.html`
+- Hosting: GitHub Pages
+- Deployment: GitHub Actions
+- Deployment runs after the test job succeeds.
+
+**Important:** GitHub Pages hosts static files only. Actual assignment submissions and validation are handled by the Flask application.
+
+## Automated Email Test Reports
+
+The GitHub Actions workflow also sends the generated JSON test report through Gmail SMTP.
+
+### How it works
+
+1. GitHub Actions executes the pytest test suite.
+2. A JSON test report is generated.
+3. The report is formatted by `receiver/generate_report.py`.
+4. The formatted report is sent to the local receiver.
+5. `receiver/send_email.py` attaches `formatted-report.json` to an email.
+6. Gmail SMTP sends the email to the configured recipient.
+
+### Required GitHub Secrets
+
+Configure these repository secrets under:
+
+Settings → Secrets and variables → Actions
+
+| Secret | Description |
+|---|---|
+| `REPORT_RECEIVER_URL` | Cloudflare Tunnel URL ending in `/report` |
+| `MAIL_USERNAME` | Sender Gmail address |
+| `MAIL_PASSWORD` | Gmail App Password |
+| `MAIL_TO` | Recipient email address |
+
+Never store Gmail passwords or App Passwords directly in the source code.
+
+### Email Notification
+
+The email includes:
+- Test execution status in the subject.
+- Generated JSON test report as an attachment.
+- Automated notification through GitHub Actions.
